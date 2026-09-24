@@ -34,13 +34,13 @@ const RevealPortrait = ({
     });
 
     const maskImage = useMotionTemplate`
-        radial-gradient(
-            200px 100px at ${mouseX}px ${mouseY}px,
-            black 0%,
-            black 55%,
-            transparent 100%
-        )
-    `;
+    radial-gradient(
+        circle 130px at ${mouseX}px ${mouseY}px,
+        black 0%,
+        black 55%,
+        transparent 100%
+    )
+`;
 
     const handleMouseMove = (
         e: React.MouseEvent<HTMLDivElement>

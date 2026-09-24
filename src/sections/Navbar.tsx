@@ -1,3 +1,4 @@
+"use client"
 import { googleSans, googleSansFlex } from "@/assets/fonts/font.google"
 import TextSwap from "@/components/animation/TextSwap"
 import Image from "next/image"
@@ -21,7 +22,7 @@ const Navbar = ({ isDesktop, activeSection }: NavbarProps) => {
                 <Link
                     href="/"
                     data-cursor
-                    data-cursor-size="60"
+                    data-cursor-size="70"
                     className="shrink-0 cursor-pointer"
                 >
                     <Image
@@ -47,6 +48,7 @@ const Navbar = ({ isDesktop, activeSection }: NavbarProps) => {
                     className={`
         hidden
         items-center
+        group
         gap-8
         text-lg
         text-[#969393]
@@ -55,31 +57,36 @@ const Navbar = ({ isDesktop, activeSection }: NavbarProps) => {
         ${googleSansFlex.className}
     `}
                 >
-                    {navItems.map((item) => (
-                        <div
-                            key={item}
-                            className="relative"
-                        >
-                            <TextSwap
-                                text={item}
-                                className="hover:text-black"
-                                animateAllowed={isDesktop && activeSection !== item.toLowerCase()}
-                            />
+                    {navItems.map((item) => {
+                        const isActive = activeSection === item.toLowerCase()
+                        return (
+                            <div
+                                key={item}
+                                className="relative"
+                            >
+                                <TextSwap
+                                    text={item}
+                                    className="hover:text-black"
+                                    animateAllowed={isDesktop && !isActive}
+                                    cursurSize={isActive ? "0" : undefined}
+                                />
 
-                            {activeSection === item.toLowerCase() && (
-                                <span
-                                    className="
+                                {isActive && (
+                                    <span
+                                        className="
                         absolute
                         -bottom-1
                         left-0
                         h-px
                         w-full
-                        bg-black
+                        bg-[#928e8e]
+                        group-hover:bg-black
                     "
-                                />
-                            )}
-                        </div>
-                    ))}
+                                    />
+                                )}
+                            </div>
+                        )
+                    })}
                 </nav>
 
                 <div

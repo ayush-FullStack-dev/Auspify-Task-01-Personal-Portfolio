@@ -8,6 +8,7 @@ type TextSwapProps = {
     text: string;
     className?: string;
     animateAllowed?: boolean;
+    cursurSize?: string | undefined;
     isWord?: boolean
 };
 
@@ -16,6 +17,8 @@ const TextSwap = ({
     className,
     animateAllowed = true,
     isWord = false
+    ,
+    cursurSize = "60"
 }: TextSwapProps) => {
     const words = text.split(isWord ? " " : "");
     const controls = useAnimationControls();
@@ -45,7 +48,7 @@ const TextSwap = ({
         <motion.div
             onHoverStart={handleHover}
             data-cursor
-            data-cursor-size="60"
+            data-cursor-size={cursurSize}
             initial="rest"
             className={twMerge(
                 `flex min-w-0 cursor-pointer items-center ${isWord ? "gap-1" : "gap-0"} overflow-hidden`,
