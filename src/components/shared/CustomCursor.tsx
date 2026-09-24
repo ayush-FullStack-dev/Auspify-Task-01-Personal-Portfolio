@@ -5,14 +5,29 @@ import {
     useMotionValue,
     useSpring,
 } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const DEFAULT_CURSOR_SIZE = 14;
 
 const CustomCursor = () => {
+    const [hasMouseMoved, setHasMouseMoved] = useState(false);
+
     const x = useMotionValue(0);
     const y = useMotionValue(0);
+    const opacity = useMotionValue(0);
     const size = useMotionValue(DEFAULT_CURSOR_SIZE);
+
+    const entryX = useSpring(x, {
+        stiffness: 70,
+        damping: 22,
+        mass: 0.8,
+    });
+
+    const entryY = useSpring(y, {
+        stiffness: 70,
+        damping: 22,
+        mass: 0.8,
+    });
 
     const springX = useSpring(x, {
         stiffness: 180,
@@ -27,25 +42,35 @@ const CustomCursor = () => {
     });
 
     const springSize = useSpring(size, {
-        stiffness: 300,
-        damping: 25,
+        stiffness: 100,
+        damping: 30,
         mass: 0.4,
     });
 
+    const springOpacity = useSpring(opacity, {
+        stiffness: 120,
+        damping: 20,
+        mass: 0.5,
+    });
+
     useEffect(() => {
+        x.set(window.innerWidth / 2);
+        y.set(window.innerHeight / 2);
+
         const handleMouseMove = (e: MouseEvent) => {
+            if (!hasMouseMoved) {
+                setHasMouseMoved(true);
+                opacity.set(1);
+            }
+
             x.set(e.clientX);
             y.set(e.clientY);
 
             const target = e.target as HTMLElement;
-
-            const cursorElement =
-                target.closest("[data-cursor]");
+            const cursorElement = target.closest("[data-cursor]");
 
             const sizeValue =
-                cursorElement?.getAttribute(
-                    "data-cursor-size"
-                );
+                cursorElement?.getAttribute("data-cursor-size");
 
             const cursorSize = sizeValue
                 ? Number(sizeValue)
@@ -58,18 +83,12 @@ const CustomCursor = () => {
             );
         };
 
-        window.addEventListener(
-            "mousemove",
-            handleMouseMove
-        );
+        window.addEventListener("mousemove", handleMouseMove);
 
         return () => {
-            window.removeEventListener(
-                "mousemove",
-                handleMouseMove
-            );
+            window.removeEventListener("mousemove", handleMouseMove);
         };
-    }, [x, y, size]);
+    }, [hasMouseMoved, x, y, opacity, size]);
 
     return (
         <motion.div
@@ -77,15 +96,16 @@ const CustomCursor = () => {
                 fixed
                 top-0
                 left-0
-                z-888
+                z-9999
                 rounded-full
                 bg-white
                 mix-blend-difference
                 pointer-events-none
             "
             style={{
-                x: springX,
-                y: springY,
+                x: hasMouseMoved ? springX : entryX,
+                y: hasMouseMoved ? springY : entryY,
+                opacity: springOpacity,
                 width: springSize,
                 height: springSize,
                 translateX: "-50%",

@@ -66,6 +66,7 @@ const RevealPortrait = ({
                 width={800}
                 height={800}
                 draggable={false}
+                loading="eager"
                 className="h-full w-full object-contain"
             />
 

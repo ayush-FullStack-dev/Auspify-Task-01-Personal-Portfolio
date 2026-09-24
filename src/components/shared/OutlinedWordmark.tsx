@@ -10,7 +10,7 @@ const OutlinedWordmark = ({ outlineClass = "2px #171717", text, className }: Out
     return (
         <span
             className={twMerge(
-                "font-semibold tracking-[-0.06em] text-transparent uppercase",
+                "font-semibold tracking-[-0.01em]  text-transparent uppercase",
                 className
             )}
             style={{
