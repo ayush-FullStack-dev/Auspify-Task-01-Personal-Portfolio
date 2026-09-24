@@ -48,7 +48,7 @@ const TextSwap = ({
             data-cursor-size="60"
             initial="rest"
             className={twMerge(
-                `flex min-w-0 items-center ${isWord ? "gap-1" : "gap-0"} overflow-hidden`,
+                `flex min-w-0 cursor-pointer items-center ${isWord ? "gap-1" : "gap-0"} overflow-hidden`,
                 className
             )}
         >

@@ -20,33 +20,38 @@ const Home = ({ isDesktop }: HomeProps) => {
         >
             <div
                 className="
-                    absolute
-                    inset-x-0
-                    top-[clamp(2rem,7dvh,5rem)]
-                    z-30
-                    flex
-                    w-full
-                    items-center
-                    justify-center
-                    gap-[clamp(0.5rem,2vw,2rem)]
-                    whitespace-nowrap
-                "
+        absolute
+        inset-x-0
+        top-[clamp(1.25rem,5dvh,2.5rem)]
+        z-30
+        flex
+        w-full
+        items-center
+        justify-center
+        gap-[clamp(0.35rem,2vw,2rem)]
+        whitespace-nowrap
+    "
             >
                 <OutlinedWordmark
                     text="Ayush"
                     className="
-                        text-[clamp(3rem,8.5vw,11rem)]
-                        leading-none
-                    "
+            text-[clamp(2.25rem,9.5vw,12rem)]
+            leading-none
+            xs:text-[clamp(2.75rem,9vw,12rem)]
+            sm:text-[clamp(3.5rem,9.5vw,12rem)]
+        "
                 />
 
                 <OutlinedWordmark
                     text="KUMAR"
                     className="
-                        text-[#262626]
-                        text-[clamp(3rem,8.5vw,9rem)]
-                        leading-none
-                    "
+            text-[#262626]
+            text-[clamp(2.25rem,9.5vw,10rem)]
+            leading-none
+           
+            xs:text-[clamp(2.75rem,9vw,10rem)]
+            sm:text-[clamp(3.5rem,9.5vw,10rem)]
+        "
                 />
             </div>
 

@@ -8,12 +8,14 @@ interface TextSwapButtonProps {
     text: string;
     className?: string;
     cursorSize?: number;
+    animateAllowed?: boolean;
 }
 
 export default function TextSwapButton({
     text,
     className,
     cursorSize = 70,
+    animateAllowed = false,
 }: TextSwapButtonProps) {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -24,26 +26,39 @@ export default function TextSwapButton({
             type="button"
             data-cursor
             data-cursor-size={cursorSize}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
+            onHoverStart={() => {
+                if (animateAllowed) {
+                    setIsHovered(true);
+                }
+            }}
+            onHoverEnd={() => {
+                if (animateAllowed) {
+                    setIsHovered(false);
+                }
+            }}
             initial="rest"
             transition={{
-                duration: 0.40,
+                duration: 0.4,
             }}
-            animate={isHovered ? "hover" : "rest"}
-            whileHover={{
-                border: 0,
-                backgroundColor: "#000",
-                color: "#fff",
-            }}
+            animate={animateAllowed ? (isHovered ? "hover" : "rest") : "rest"}
+            whileHover={
+                animateAllowed
+                    ? {
+                          border: 0,
+                          backgroundColor: "#000",
+                          color: "#fff",
+                      }
+                    : {}
+            }
             className={twMerge(
-                "w-35 h-11 p-5 border overflow-hidden border-black rounded-full flex items-center justify-center text-center",
+                "w-35 h-11 p-5 cursor-pointer border overflow-hidden border-black rounded-full flex items-center justify-center text-center",
                 className
             )}
         >
             <motion.div
                 className={twMerge(
-                    `flex min-w-0 items-center ${words.length > 1 ? "gap-1" : "gap-0"
+                    `flex min-w-0 items-center ${
+                        words.length > 1 ? "gap-1" : "gap-0"
                     }`
                 )}
             >

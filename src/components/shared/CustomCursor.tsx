@@ -42,7 +42,7 @@ const CustomCursor = () => {
     });
 
     const springSize = useSpring(size, {
-        stiffness: 100,
+        stiffness: 200,
         damping: 30,
         mass: 0.4,
     });

@@ -57,6 +57,8 @@ const RevealPortrait = ({
                 "relative h-full w-full select-none",
                 className
             )}
+            data-cursor
+            data-cursor-size={0}
             onMouseMove={allowAnimation ? handleMouseMove : undefined}
         >
 

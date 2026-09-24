@@ -12,7 +12,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --breakpoint-xs: 30rem;
 
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 140rem;
+  --breakpoint-5xl: 160rem;
+  --breakpoint-6xl: 180rem;
+  --breakpoint-7xl: 200rem;
+  --breakpoint-8xl: 220rem;
+  --breakpoint-9xl: 240rem;
+  --breakpoint-10xl: 260rem;
+}
 
 body {
   background: var(--background);
