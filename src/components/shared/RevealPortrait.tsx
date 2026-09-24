@@ -35,7 +35,7 @@ const RevealPortrait = ({
 
     const maskImage = useMotionTemplate`
         radial-gradient(
-            200px 140px at ${mouseX}px ${mouseY}px,
+            200px 100px at ${mouseX}px ${mouseY}px,
             black 0%,
             black 55%,
             transparent 100%
