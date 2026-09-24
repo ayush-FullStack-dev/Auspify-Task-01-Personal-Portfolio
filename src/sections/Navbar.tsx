@@ -17,7 +17,7 @@ type NavbarProps = {
 const Navbar = ({ isDesktop, activeSection }: NavbarProps) => {
     return (
         <header className="relative z-99 h-20 w-full lg:h-22">
-            <div className="mx-auto flex h-full w-full items-center justify-between px-4 sm:px-6 lg:max-w-[1600px] lg:px-8 xl:px-10">
+            <div className="mx-auto flex h-full w-full items-center justify-between px-0 xs:px-4 sm:px-6 lg:max-w-[1600px] lg:px-8 xl:px-10">
 
                 <Link
                     href="/"
@@ -32,13 +32,14 @@ const Navbar = ({ isDesktop, activeSection }: NavbarProps) => {
                         height={600}
                         className="
                             h-full
-                            w-full
+                            w-[35vw]
+                            xs:w-[25vw]
                             transition-transform
                             duration-300
                             ease-out
                             scale-105
                             hover:scale-110
-                            sm:w-28
+                            sm:w-35
                             lg:w-40
                         "
                     />
